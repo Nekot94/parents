@@ -51,8 +51,16 @@ class DataService {
         
     
         
-            MAN_REF.childByAppendingPath(name).setValue(coordinates)
+            MAN_REF.childByAppendingPath(name).childByAppendingPath("coordinates").setValue(coordinates)
         
         }
+    
+    func writeChilds(name: String, childs:[String] ) {
+        
+        
+        
+        MAN_REF.childByAppendingPath(name).childByAppendingPath("childs").setValue(childs)
+        
+    }
     
 }

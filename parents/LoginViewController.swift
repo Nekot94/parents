@@ -67,7 +67,7 @@ class LoginViewController: UIViewController {
                 
                 if error != nil {
                     print(error)
-                    self.loginErrorAlert("Оопм!", message: "Проверька имя и пароль")
+                    self.loginErrorAlert("Оопм!", message: "Проверь имя и пароль")
                 } else {
                     
                     // Be sure the correct uid is stored.

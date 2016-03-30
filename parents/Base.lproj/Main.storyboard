@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -81,12 +82,41 @@
                     <view key="view" contentMode="scaleToFill" id="Whk-xQ-Wvc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axh-n8-eme">
+                                <rect key="frame" x="467" y="89" width="113" height="30"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.79607843137254897" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Добавить">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="findMan:" destination="YAL-a0-uSf" eventType="touchUpInside" id="Z8F-h9-i0n"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="inz-bN-dv2">
+                                <rect key="frame" x="20" y="90" width="439" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="inz-bN-dv2" secondAttribute="leading" id="2uh-h0-pnC"/>
+                            <constraint firstItem="inz-bN-dv2" firstAttribute="top" secondItem="mwc-DM-l6A" secondAttribute="bottom" constant="26" id="A0L-jH-cFZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Axh-n8-eme" secondAttribute="trailing" id="E32-nV-YCg"/>
+                            <constraint firstItem="Axh-n8-eme" firstAttribute="width" secondItem="inz-bN-dv2" secondAttribute="height" multiplier="113:30" id="O6a-nc-an4"/>
+                            <constraint firstItem="Axh-n8-eme" firstAttribute="leading" secondItem="inz-bN-dv2" secondAttribute="trailing" constant="8" id="stI-1L-gvH"/>
+                            <constraint firstItem="Axh-n8-eme" firstAttribute="top" secondItem="mwc-DM-l6A" secondAttribute="bottom" constant="25" id="xXL-j7-dCf"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="manEdit" destination="inz-bN-dv2" id="Cmm-i1-PfL"/>
+                        <segue destination="Pm8-67-hYT" kind="show" identifier="MapCntrollerAdd" id="2p9-oP-xoF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZu-fm-e3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3162" y="1169"/>
+            <point key="canvasLocation" x="3096" y="1251"/>
         </scene>
         <!--Карта-->
         <scene sceneID="j3u-zx-AJz">
@@ -133,7 +163,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="+"/>
                                 <connections>
-                                    <segue destination="YAL-a0-uSf" kind="show" id="z5k-5c-qtC"/>
+                                    <segue destination="YAL-a0-uSf" kind="show" identifier="AddChildForm" id="Uum-gF-w8o"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -145,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8am-Ay-0Dh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2440" y="1169"/>
+            <point key="canvasLocation" x="2088" y="1251"/>
         </scene>
         <!--Restore View Controller-->
         <scene sceneID="Hqo-Aj-Ivw">
@@ -258,7 +288,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcn-Ei-8M7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="418"/>
+            <point key="canvasLocation" x="117" y="430"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="NJ9-qQ-BX7">
@@ -345,10 +375,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4k-2o-ipQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="675" y="1258"/>
+            <point key="canvasLocation" x="563" y="1260"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="eFB-Ti-W5x"/>
+        <segue reference="2p9-oP-xoF"/>
     </inferredMetricsTieBreakers>
 </document>

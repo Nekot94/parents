@@ -14,6 +14,7 @@ import MapKit
 class MapViewController: UIViewController {
     
     var locationManager = CLLocationManager()
+    var coord = CLLocationCoordinate2D(latitude: 42.976, longitude: 47.502)
 
     @IBOutlet weak var mapView: MKMapView!{
     didSet{
@@ -25,11 +26,26 @@ class MapViewController: UIViewController {
     
     var me = Men()
     
-    func getUserName(inout name: String) {
+    func getUserName() {
         //var name: String?
         DataService.dataService.CURRENT_USER_REF.observeEventType(.Value, withBlock: { snapshot in
-                name = snapshot.value.valueForKey("username") as! String
-                print(name)
+            if let l = snapshot.value.valueForKey("username") as? String {
+                self.me.name = l
+            }
+            DataService.dataService.MAN_REF.childByAppendingPath(self.me.name).observeEventType(.Value, withBlock: { snaps in
+
+                if let p = snaps.value.valueForKey("childs")  as? [String] {
+                    
+                    self.me.childs = p
+                    print(self.me.childs)
+                }
+            
+                print(self.me.name)
+                }, withCancelBlock: { error in
+                    print(error.description)
+            })
+                
+            
             
             }, withCancelBlock: { error in
                 print(error.description)
@@ -42,39 +58,10 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
        super.viewDidLoad()
         
-        getUserName(&me.name)
+        self.getUserName()
         print(me.name)
-        
         print(UIDevice.currentDevice().identifierForVendor!.UUIDString)
-        /*let location = CLLocationCoordinate2D(
-            latitude: 51.50007773,
-            longitude: -0.1246402
-        )
-        // 2
-        let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegion(center: location, span: span)
-        mapView.setRegion(region, animated: true)
-        
-        
-        
-        //3
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        annotation.title = "Big Ben"
-        annotation.subtitle = "London"
-        mapView.addAnnotation(annotation)
-        
-    
-        let location2 = self.coordinates        // 2
-        let span2 = MKCoordinateSpanMake(1, 1)
-        let region2 = MKCoordinateRegion(center: location2, span: span2)
-        mapView.setRegion(region2, animated: true)
-        
-        let annotation2 = MKPointAnnotation()
-        annotation2.coordinate = location2
-        annotation2.title = "Me"
-        annotation2.subtitle = "Here"
-        mapView.addAnnotation(annotation2) */
+
     }
     
 
@@ -87,7 +74,33 @@ class MapViewController: UIViewController {
     }
     
 
-    
+    func getCoordinate(men: String)  {
+        
+        //var coordinate: CLLocationCoordinate2D?
+        DataService.dataService.MAN_REF.childByAppendingPath(men).childByAppendingPath("coordinates").observeEventType(.Value, withBlock: { snapshot in
+            if let l = snapshot.value.valueForKey("longitude") as? Double{
+                print("longitude \(l)")
+                self.coord.longitude = l
+            }
+            if let p = snapshot.value.valueForKey("latitude") as? Double  {
+                print("latitude \(p)")
+                self.coord.latitude = p
+            }
+            
+            let annotation2 = MKPointAnnotation()
+            annotation2.coordinate = self.coord
+            annotation2.title = men
+            annotation2.subtitle = "Здесь"
+            self.mapView.addAnnotation(annotation2)
+            //print(self.coord.longitude)
+            //print(self.coord.latitude)
+            
+            }, withCancelBlock: { error in
+                print(error.description)
+                
+        })
+        
+    }
 
   
     
@@ -110,22 +123,47 @@ class MapViewController: UIViewController {
     
     
     override func viewWillAppear(animated: Bool) {
-       
+        
         super.viewWillAppear(animated)
+        /*print(NSUserDefaults.standardUserDefaults().valueForKey("uid"))
+        if NSUserDefaults.standardUserDefaults().valueForKey("uid") == nil || DataService.dataService.CURRENT_USER_REF.authData == nil {
+            
+            
+            /*
+             DataService.dataService.CURRENT_USER_REF.observeEventType(.Value, withBlock: { snapshot in
+             if let l = snapshot.value.valueForKey("username") {
+             print(l)
+             }
+             
+             }, withCancelBlock: { error in
+             print(error.description)
+             })
+             */
+            NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "uid")
+            
+            
+            let loginViewController = self.storyboard!.instantiateViewControllerWithIdentifier("Login")
+            UIApplication.sharedApplication().keyWindow?.rootViewController = loginViewController
+        }
+        
        
-        configureLocationManager()
+        */
+
+        //configureLocationManager()
       
     }
     
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        configureLocationManager()
     }
     
     private func configureLocationManager(){
         if !CLLocationManager.locationServicesEnabled() {
             print("Location services is not enabled! Error!")
         }
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 50
@@ -133,14 +171,59 @@ class MapViewController: UIViewController {
   
         
     }
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-    }
-    
+
     
     //var coordinates = CLLocationCoordinate2D(latitude: 42.976, longitude: 47.502)
 
+    func drawChilds(){
+        
+        if self.me.childs == []{
+            return
+        }
+        let allAnnotations = self.mapView.annotations
+        self.mapView.removeAnnotations(allAnnotations)
+        
+        for child in self.me.childs{
+            getCoordinate(child)
+            
+            //let location2 =
+            //let span2 = MKCoordinateSpanMake(1, 1)
+            //let region2 = MKCoordinateRegion(center: location2, span: span2)
+            //mapView.setRegion(region2, animated: true)
+            /*
+            let annotation2 = MKPointAnnotation()
+            annotation2.coordinate = self.coord
+            annotation2.title = child
+            annotation2.subtitle = "Здесь"
+            mapView.addAnnotation(annotation2)
+            */
+        }
+        
+    }
+
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+       
+        guard let identifier = segue.identifier else {
+            return
+        }
+        switch identifier {
+        case "AddChildForm":
+            guard let vc = segue.destinationViewController as? AddChildViewController else {
+                break
+            }
+            vc.me = self.me
+            
+        default:
+            break
+        }
+        
+   
+        
+ 
+            
+    }
+    
     
     
 }
@@ -149,6 +232,9 @@ class MapViewController: UIViewController {
 
 extension MapViewController: CLLocationManagerDelegate{
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        drawChilds()
+        //getCoordinate("a1")
         
         print(locations.last?.coordinate)
         

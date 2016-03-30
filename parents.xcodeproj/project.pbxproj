@@ -113,9 +113,9 @@
 				75F78EF11CA7DBED005F6B99 /* RegisterViewController.swift */,
 				75F78EF51CA7DF3F005F6B99 /* LicenseViewController.swift */,
 				75F78EF31CA7DC42005F6B99 /* LoginViewController.swift */,
-				75F78F2A1CA808E5005F6B99 /* AddChildViewController.swift */,
 				75F78F2C1CA80D0F005F6B99 /* RestoreViewController.swift */,
 				75F78F281CA7F371005F6B99 /* MapViewController.swift */,
+				75F78F2A1CA808E5005F6B99 /* AddChildViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
