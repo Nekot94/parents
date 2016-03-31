@@ -15,6 +15,7 @@ class MapViewController: UIViewController {
     
     var locationManager = CLLocationManager()
     var coord = CLLocationCoordinate2D(latitude: 42.976, longitude: 47.502)
+    var timer: NSTimer!
 
     @IBOutlet weak var mapView: MKMapView!{
     didSet{
@@ -59,12 +60,16 @@ class MapViewController: UIViewController {
        super.viewDidLoad()
         
         self.getUserName()
-        print(me.name)
+        timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(MapViewController.runTimedCode), userInfo: nil, repeats: true)
+        //print(me.name)
         print(UIDevice.currentDevice().identifierForVendor!.UUIDString)
 
     }
     
-
+    func runTimedCode(){
+        print("s")
+        drawChilds()
+    }
   
     
 
@@ -72,7 +77,9 @@ class MapViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
 
     func getCoordinate(men: String)  {
         
@@ -86,6 +93,10 @@ class MapViewController: UIViewController {
                 print("latitude \(p)")
                 self.coord.latitude = p
             }
+            
+            //let span2 = MKCoordinateSpanMake(0.01, 0.01)
+            //let region2 = MKCoordinateRegion(center: self.coord, span: span2)
+            //self.mapView.setRegion(region2, animated: true)
             
             let annotation2 = MKPointAnnotation()
             annotation2.coordinate = self.coord
@@ -233,8 +244,8 @@ class MapViewController: UIViewController {
 extension MapViewController: CLLocationManagerDelegate{
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        drawChilds()
-        //getCoordinate("a1")
+        //drawChilds()
+        
         
         print(locations.last?.coordinate)
         

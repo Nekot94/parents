@@ -31,8 +31,14 @@ class RegisterViewController: UIViewController {
         let username = usernameField.text
         let email = emailField.text
         let password = passwordField.text
+        let equal = equalPassword.text
         
         if username != "" && email != "" && password != "" {
+            
+            if password != equal {
+                self.signupErrorAlert("Упм!", message: "Пароли не совпадают")
+                return
+            }
             
             // Set Email and Password for the New User.
             
