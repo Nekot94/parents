@@ -17,20 +17,14 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+     
     }
 
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        // If we have the uid stored, the user is already logger in - no need to sign in again!
-        //let dat = ["Longtitude": "47.5126285", "Latitude": "42.9666308"]
-        //DataService.dataService.createNewMan("Fack@mail.ru", coordinates: dat)
+   
         
         if NSUserDefaults.standardUserDefaults().valueForKey("uid") != nil && DataService.dataService.CURRENT_USER_REF.authData != nil {
             
@@ -61,7 +55,7 @@ class LoginViewController: UIViewController {
         
         if email != "" && password != "" {
             
-            // Login with the Firebase's authUser method
+            
             
             DataService.dataService.BASE_REF.authUser(email, password: password, withCompletionBlock: { error, authData in
                 
@@ -70,11 +64,11 @@ class LoginViewController: UIViewController {
                     self.loginErrorAlert("Оопм!", message: "Проверь имя и пароль")
                 } else {
                     
-                    // Be sure the correct uid is stored.
+                    
                     
                     NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: "uid")
                     
-                    // Enter the app!
+                    
                     
                     self.performSegueWithIdentifier("CurrentlyLoggedIn", sender: nil)
                 }
@@ -82,7 +76,7 @@ class LoginViewController: UIViewController {
             
         } else {
             
-            // There was a problem
+            
             
             loginErrorAlert("Упм!", message: "Введи имя и пароль")
         }

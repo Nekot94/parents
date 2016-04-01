@@ -32,6 +32,16 @@ class Men {
             DataService.dataService.writeChilds(self.name, childs: self.childs)
         }
     }
+    
+    func removeChild(name: String){
+        if self.childs.indexOf(name) != nil {
+            print(String(self.childs.indexOf(name)!))
+            DataService.dataService.removeChild(self.name, value: String(self.childs.indexOf(name)!))
+            self.childs.removeAtIndex(self.childs.indexOf(name)!)
+        } else{
+            print("Нет такого")
+        }
+    }
     /*
     func getCoordinate(men: String) -> CLLocationCoordinate2D? {
         

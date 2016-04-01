@@ -19,12 +19,12 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
     }
     
     @IBAction func createAccount(sender: AnyObject) {
@@ -40,18 +40,18 @@ class RegisterViewController: UIViewController {
                 return
             }
             
-            // Set Email and Password for the New User.
+           
             
             DataService.dataService.BASE_REF.createUser(email, password: password, withValueCompletionBlock: { error, result in
                 
                 if error != nil {
                     
-                    // There was a problem.
+                    
                     self.signupErrorAlert("Упм!", message: "У тебя проблемки")
                     
                 } else {
                     
-                    // Create and Login the New User with authUser
+                   
                     DataService.dataService.BASE_REF.authUser(email, password: password, withCompletionBlock: {
                         err, authData in
                         
@@ -66,7 +66,6 @@ class RegisterViewController: UIViewController {
                         
                     })
                     
-                    // Store the uid for future access - handy!
                     NSUserDefaults.standardUserDefaults().setValue(result ["uid"], forKey: "uid")
                     
                     // Запускаем карту
@@ -87,8 +86,6 @@ class RegisterViewController: UIViewController {
     }
     
     func signupErrorAlert(title: String, message: String) {
-        
-        // Called upon signup error to let the user know signup didn't work.
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)

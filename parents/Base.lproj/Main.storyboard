@@ -83,8 +83,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="inz-bN-dv2">
+                                <rect key="frame" x="20" y="46" width="439" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axh-n8-eme">
-                                <rect key="frame" x="467" y="89" width="113" height="30"/>
+                                <rect key="frame" x="467" y="45" width="113" height="30"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.79607843137254897" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Добавить">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -93,8 +98,22 @@
                                     <action selector="findMan:" destination="YAL-a0-uSf" eventType="touchUpInside" id="Z8F-h9-i0n"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="inz-bN-dv2">
-                                <rect key="frame" x="20" y="90" width="439" height="30"/>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="66U-Qe-xdg">
+                                <rect key="frame" x="20" y="326" width="560" height="216"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLl-yv-eeG">
+                                <rect key="frame" x="467" y="96" width="113" height="30"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.79607843140000001" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Удалить">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="delMen:" destination="YAL-a0-uSf" eventType="touchUpInside" id="Ufv-Yo-CLF"/>
+                                    <action selector="findMan:" destination="YAL-a0-uSf" eventType="touchUpInside" id="JUe-DF-FKF"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vfN-KH-LsA">
+                                <rect key="frame" x="20" y="96" width="439" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -102,15 +121,26 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="inz-bN-dv2" secondAttribute="leading" id="2uh-h0-pnC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XLl-yv-eeG" secondAttribute="trailing" id="6ex-Ed-f7U"/>
                             <constraint firstItem="inz-bN-dv2" firstAttribute="top" secondItem="mwc-DM-l6A" secondAttribute="bottom" constant="26" id="A0L-jH-cFZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Axh-n8-eme" secondAttribute="trailing" id="E32-nV-YCg"/>
+                            <constraint firstItem="XLl-yv-eeG" firstAttribute="leading" secondItem="vfN-KH-LsA" secondAttribute="trailing" constant="8" symbolic="YES" id="GqO-Wx-QzC"/>
+                            <constraint firstItem="pSc-CP-gS0" firstAttribute="top" secondItem="66U-Qe-xdg" secondAttribute="bottom" constant="14" id="LMT-zp-cVk"/>
+                            <constraint firstItem="vfN-KH-LsA" firstAttribute="top" secondItem="inz-bN-dv2" secondAttribute="bottom" constant="20" id="MQu-nr-QiU"/>
+                            <constraint firstItem="XLl-yv-eeG" firstAttribute="trailing" secondItem="66U-Qe-xdg" secondAttribute="trailing" id="NP3-Oc-1RA"/>
                             <constraint firstItem="Axh-n8-eme" firstAttribute="width" secondItem="inz-bN-dv2" secondAttribute="height" multiplier="113:30" id="O6a-nc-an4"/>
+                            <constraint firstItem="XLl-yv-eeG" firstAttribute="leading" secondItem="Axh-n8-eme" secondAttribute="leading" id="QpI-4J-WkL"/>
+                            <constraint firstItem="XLl-yv-eeG" firstAttribute="top" secondItem="Axh-n8-eme" secondAttribute="bottom" constant="21" id="RIG-YC-dkd"/>
+                            <constraint firstItem="vfN-KH-LsA" firstAttribute="leading" secondItem="inz-bN-dv2" secondAttribute="leading" id="bX0-ab-aA6"/>
                             <constraint firstItem="Axh-n8-eme" firstAttribute="leading" secondItem="inz-bN-dv2" secondAttribute="trailing" constant="8" id="stI-1L-gvH"/>
+                            <constraint firstItem="vfN-KH-LsA" firstAttribute="leading" secondItem="66U-Qe-xdg" secondAttribute="leading" id="wfd-Wd-8mx"/>
                             <constraint firstItem="Axh-n8-eme" firstAttribute="top" secondItem="mwc-DM-l6A" secondAttribute="bottom" constant="25" id="xXL-j7-dCf"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="delBut" destination="XLl-yv-eeG" id="SpG-PC-0P4"/>
                         <outlet property="manEdit" destination="inz-bN-dv2" id="Cmm-i1-PfL"/>
+                        <outlet property="textMen" destination="vfN-KH-LsA" id="wQT-mB-eCs"/>
                         <segue destination="Pm8-67-hYT" kind="show" identifier="MapCntrollerAdd" id="2p9-oP-xoF"/>
                     </connections>
                 </viewController>
@@ -189,11 +219,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Почта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9ZC-N1-o4c">
-                                <rect key="frame" x="20" y="41" width="560" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KwA-Bo-YMq">
                                 <rect key="frame" x="268" y="139" width="65" height="40"/>
                                 <color key="backgroundColor" red="0.21635544379999999" green="0.81498579550000005" blue="0.059276614060000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -221,6 +246,11 @@
                                     <action selector="restore:" destination="oev-qM-23A" eventType="touchUpInside" id="IEO-9f-Fsz"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Почта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9ZC-N1-o4c">
+                                <rect key="frame" x="20" y="41" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -285,11 +315,6 @@
                                     <segue destination="gCA-TA-zE6" kind="show" id="O1p-wo-EWn"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hyG-yI-nM6">
-                                <rect key="frame" x="20" y="63" width="560" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2f-jU-23z">
                                 <rect key="frame" x="243" y="154" width="115" height="30"/>
                                 <constraints>
@@ -304,6 +329,11 @@
                                     <segue destination="oev-qM-23A" kind="show" id="CkE-DZ-m6A"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hyG-yI-nM6">
+                                <rect key="frame" x="20" y="63" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -347,22 +377,17 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Почта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W5M-Sb-FPo">
                                 <rect key="frame" x="20" y="70" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hjY-Qr-Stx">
                                 <rect key="frame" x="20" y="113" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Подтвердить пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k0t-se-6Zs">
                                 <rect key="frame" x="20" y="151" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xyB-kZ-mO2">
-                                <rect key="frame" x="20" y="32" width="560" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLw-FQ-hgJ">
                                 <rect key="frame" x="226" y="193" width="148" height="40"/>
@@ -392,6 +417,11 @@
                                     <action selector="cancelCreateAccount:" destination="hgX-Pm-R9B" eventType="touchUpInside" id="CSc-nS-GZr"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xyB-kZ-mO2">
+                                <rect key="frame" x="20" y="32" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -445,7 +475,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eFB-Ti-W5x"/>
         <segue reference="2p9-oP-xoF"/>
+        <segue reference="dz5-Wp-Lcc"/>
     </inferredMetricsTieBreakers>
 </document>

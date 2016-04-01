@@ -117,18 +117,19 @@ class MapViewController: UIViewController {
     
     @IBAction func logout(sender: AnyObject) {
         
-        // unauth() is the logout method for the current user.
         
         DataService.dataService.CURRENT_USER_REF.unauth()
         
-        // Remove the user's uid from storage.
+    
         
         NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "uid")
         
-        // Head back to Login!
+        //UIControl().sendAction(#selector(NSURLSessionTask.suspend), to: UIApplication.sharedApplication(), forEvent: nil)
         
         let loginViewController = self.storyboard!.instantiateViewControllerWithIdentifier("Login")
         UIApplication.sharedApplication().keyWindow?.rootViewController = loginViewController
+        
+       
     }
 
     
@@ -136,31 +137,7 @@ class MapViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
-        /*print(NSUserDefaults.standardUserDefaults().valueForKey("uid"))
-        if NSUserDefaults.standardUserDefaults().valueForKey("uid") == nil || DataService.dataService.CURRENT_USER_REF.authData == nil {
-            
-            
-            /*
-             DataService.dataService.CURRENT_USER_REF.observeEventType(.Value, withBlock: { snapshot in
-             if let l = snapshot.value.valueForKey("username") {
-             print(l)
-             }
-             
-             }, withCancelBlock: { error in
-             print(error.description)
-             })
-             */
-            NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "uid")
-            
-            
-            let loginViewController = self.storyboard!.instantiateViewControllerWithIdentifier("Login")
-            UIApplication.sharedApplication().keyWindow?.rootViewController = loginViewController
-        }
-        
-       
-        */
 
-        //configureLocationManager()
       
     }
     
@@ -197,17 +174,7 @@ class MapViewController: UIViewController {
         for child in self.me.childs{
             getCoordinate(child)
             
-            //let location2 =
-            //let span2 = MKCoordinateSpanMake(1, 1)
-            //let region2 = MKCoordinateRegion(center: location2, span: span2)
-            //mapView.setRegion(region2, animated: true)
-            /*
-            let annotation2 = MKPointAnnotation()
-            annotation2.coordinate = self.coord
-            annotation2.title = child
-            annotation2.subtitle = "Здесь"
-            mapView.addAnnotation(annotation2)
-            */
+
         }
         
     }

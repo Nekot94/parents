@@ -8,22 +8,70 @@
 
 import UIKit
 
-class AddChildViewController: UIViewController {
-    
-    
-    var me = Men()
 
+class AddChildViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    
+    @IBOutlet weak var textMen: UITextField!
+    @IBOutlet weak var delBut: UIButton!
+   
+    var me = Men()
+    var picker = UIPickerView()
+
+    @IBAction func delMen(sender: AnyObject) {
+        
+        let username2 = textMen.text
+        
+        if username2 == "" { return }
+        
+        me.removeChild(username2!)
+        textMen.text = ""
+        self.performSegueWithIdentifier("MapCntrollerAdd", sender: nil)
+        
+        
+        
+    }
     @IBOutlet weak var manEdit: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-       // print(self.me.name)
-
-        // Do any additional setup after loading the view.
+        textMen.hidden = false
+        delBut.hidden = false
+        picker.delegate = self
+        picker.dataSource = self
+        textMen.inputView = picker
+        if me.childs.count == 0{
+            textMen.hidden = true
+            delBut.hidden = true
+            
+        } else {
+            textMen.text = me.childs[0]
+        }
+        
+   
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+     
+    }
+    
+  
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+ 
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return me.childs.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        textMen.text = me.childs[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return me.childs[row]
     }
     
     @IBAction func findMan(sender: AnyObject) {
@@ -39,6 +87,7 @@ class AddChildViewController: UIViewController {
                             self.me.childs.append(username!)
                             self.me.addChilds()
                             print(l)
+                            self.manEdit.text = ""
                             self.performSegueWithIdentifier("MapCntrollerAdd", sender: nil)
                             
                         }else {

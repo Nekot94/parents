@@ -63,4 +63,8 @@ class DataService {
         
     }
     
+    func removeChild(name: String, value: String) {
+                MAN_REF.childByAppendingPath(name).childByAppendingPath("childs").childByAppendingPath(value).removeValue()
+    }
+    
 }
